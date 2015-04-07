@@ -12,6 +12,7 @@ namespace Reflection_Lab_2_Tests
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -64,40 +65,8 @@ namespace Reflection_Lab_2_Tests
         [TestMethod]
         public void TestMethodInterface()
         {
-            var count = 0;
-
             var myobj = new List<object> { new Cat(2), new Human(9), new BlueMen() };
-
-            foreach (var value in myobj)
-            {
-                if (value.GetType().GetInterface("IViviparous") == typeof(IViviparous))
-                {
-                    count++;
-                    var attribs = value.GetType().GetCustomAttributes(typeof(AlternativeName), false);
-                    var alt = (AlternativeName)attribs[0];
-
-                    if (alt.Name == "CT")
-                    {
-                        var cat = (Cat)value;
-                        int gestationPeriod = cat.GetGestationPeriod();
-                        Console.WriteLine(gestationPeriod);
-                    }
-                    else
-                    {
-                        if (alt.Name == "HM")
-                        {
-                            var human = (Human)value;
-                            int gestationPeriod = human.GetGestationPeriod();
-                            Console.WriteLine(gestationPeriod);
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Blue men want capture the Earth");
-                }
-            }
-
+            var count = myobj.Count(value => value.GetType().GetInterface("IViviparous") == typeof(IViviparous));
             Assert.AreEqual(count, 2);
         }
 
@@ -107,42 +76,63 @@ namespace Reflection_Lab_2_Tests
         [TestMethod]
         public void TestMethodExtension()
         {
-            var count = 0;
-
             var myobj = new List<object> { new Cat(2), new Human(9), new BlueMen() };
+            var count = myobj.Count(value => value.GetType().BaseType == typeof(Humanoid));
+            Assert.AreEqual(count, 2);
+        }
 
-            foreach (var value in myobj)
+        /// <summary>
+        /// The test method.
+        /// </summary>
+        [TestMethod]
+        public void TestMethod()
+        {
+            var objects = new List<object> { new Cat(2), new Human(9), new BlueMen() };
+            var sb = new StringBuilder();
+            foreach (var obj in objects)
             {
-                if (value.GetType().BaseType == typeof(Humanoid))
-                {
-                    count++;
-                    var attribs = value.GetType().GetCustomAttributes(typeof(AlternativeName), false);
-                    var alt = (AlternativeName)attribs[0];
-
-                    if (alt.Name == "HM")
-                    {
-                        var human = (Human)value;
-                        int gestationPeriod = human.GetGestationPeriod();
-                        Console.WriteLine(gestationPeriod);
-                    }
-                    else
-                    {
-                        if (alt.Name == "BM")
-                        {
-                            var blueMen = (BlueMen)value;
-                            blueMen.CountOfTentacles = 10;
-                            Console.WriteLine(blueMen.CountOfTentacles);
-                        }
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine("Small beautiful cats");
-                }
+                sb.Append(obj.GetType());
+                sb.Append(";");
             }
 
-            Assert.AreEqual(count, 2);
+            Console.WriteLine(sb.ToString());
+            var types = objects.Select(obj => obj.GetType()).ToList();
+            Assert.IsTrue(types.Contains(typeof(Cat)), "Doesn't contain cat");
+            Assert.IsTrue(types.Contains(typeof(Human)), "Doesn't contain human");
+            Assert.IsTrue(types.Contains(typeof(BlueMen)), "Doesn't contain blue men");
+        }
+
+        /// <summary>
+        /// The test method property finding.
+        /// </summary>
+        [TestMethod]
+        public void TestMethodPropertyFinding()
+        {
+            var objects = new List<object> { new Cat(2), new Human(9), new BlueMen() };
+
+            foreach (var obj in objects)
+            {
+                if (obj is BlueMen)
+                {
+                    Assert.IsNotNull(
+                        obj.GetType().GetProperty("CountOfTentacles"),
+                        "Count of tentacles property of blue men is not present!");
+                }
+
+                if (obj is Human)
+                {
+                    Assert.IsNotNull(
+                        obj.GetType().GetProperty("CountOfHands"),
+                        "Count of hands property of human is not present!");
+                }
+
+                if (obj is Cat)
+                {
+                    Assert.IsTrue(
+                        obj.GetType().GetProperties().Length == 0,
+                        " Cat haven't any properties!");
+                }
+            }
         }
     }
 }
