@@ -21,7 +21,13 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
         /// </summary>
         public StationConfiguration()
         {
-            
+            HasKey(station => station.Id).Property(station => station.Id).HasColumnName("StationId");
+
+            Property(station => station.Name).HasMaxLength(30).IsRequired();
+            Property(station => station.Location).HasMaxLength(256).IsRequired();
+
+            HasMany(station => station.Docks).WithRequired(dock => dock.Station).WillCascadeOnDelete(true);
+            HasMany(station => station.Engineers).WithRequired(engineer => engineer.WorkStation).WillCascadeOnDelete(false);
         }
     }
 }

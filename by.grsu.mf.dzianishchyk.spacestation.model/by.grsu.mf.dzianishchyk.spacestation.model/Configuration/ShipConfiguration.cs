@@ -21,7 +21,9 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
         /// </summary>
         public ShipConfiguration()
         {
-            
+            HasKey(ship => ship.Id).Property(ship => ship.Id).HasColumnName("ShipId");
+
+            Property(ship => ship.Name).HasMaxLength(30).IsRequired();
         }
     }
 }

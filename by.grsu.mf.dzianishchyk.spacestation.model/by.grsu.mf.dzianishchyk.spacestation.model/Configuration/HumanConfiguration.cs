@@ -21,7 +21,11 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
         /// </summary>
         public HumanConfiguration()
         {
-            
+            HasKey(human => human.Id).Property(human => human.Id).HasColumnName("HumanId");
+
+            Property(human => human.FirstName).HasMaxLength(30).IsOptional();
+            Property(human => human.MiddleName).HasMaxLength(30).IsOptional();
+            Property(human => human.LastName).HasMaxLength(30).IsRequired();
         }
     }
 }

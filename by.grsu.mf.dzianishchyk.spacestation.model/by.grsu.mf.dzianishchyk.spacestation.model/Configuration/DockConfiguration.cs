@@ -21,7 +21,15 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
         /// </summary>
         public DockConfiguration()
         {
-            
+            HasKey(dock => dock.Id).Property(dock => dock.Id).HasColumnName("DockId");
+
+            Property(dock => dock.Name).HasMaxLength(30).IsRequired();
+            Property(dock => dock.CountOfShipsPlaces).IsRequired();
+
+            HasMany(dock => dock.Ships).WithOptional(ship => ship.DockRegistry).WillCascadeOnDelete(false);
+            HasMany(dock => dock.Engineers)
+                .WithMany(engineer => engineer.FixedDocks)
+                .Map(m => m.ToTable("DockWithEngineer").MapLeftKey("DockId").MapRightKey("EngineerId"));
         }
     }
 }
