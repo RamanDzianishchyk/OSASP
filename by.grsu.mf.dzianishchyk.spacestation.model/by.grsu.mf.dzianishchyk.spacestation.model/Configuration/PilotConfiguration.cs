@@ -27,6 +27,7 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
             Property(pilot => pilot.FirstName).HasMaxLength(30).IsOptional();
             Property(pilot => pilot.MiddleName).HasMaxLength(30).IsOptional();
             Property(pilot => pilot.LastName).HasMaxLength(30).IsRequired();
+            Property(pilot => pilot.Biography).HasMaxLength(1024).IsOptional();
             Property(pilot => pilot.ExperienceFlights).IsRequired();
 
             HasOptional(pilot => pilot.OwnShip).WithOptionalDependent(ship => ship.OwnerPilot).WillCascadeOnDelete(false);

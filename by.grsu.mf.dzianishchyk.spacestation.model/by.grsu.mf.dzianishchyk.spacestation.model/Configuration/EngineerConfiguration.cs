@@ -27,6 +27,7 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model.Configuration
             Property(engineer => engineer.MiddleName).HasMaxLength(30).IsOptional();
             Property(engineer => engineer.LastName).HasMaxLength(30).IsRequired();
             Property(engineer => engineer.Qualification).HasMaxLength(255).IsRequired();
+            Property(pilot => pilot.Biography).HasMaxLength(1024).IsOptional();
         }
     }
 }
