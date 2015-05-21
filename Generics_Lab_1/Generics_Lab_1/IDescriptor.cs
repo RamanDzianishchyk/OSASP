@@ -12,6 +12,7 @@ namespace Generics_Lab_1
     /// The Descriptor interface.
     /// </summary>
     /// <typeparam name="T">
+    /// 
     /// </typeparam>
     public interface IDescriptor<in T>
         where T : Device

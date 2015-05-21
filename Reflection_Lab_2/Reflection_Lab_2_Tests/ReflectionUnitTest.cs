@@ -30,31 +30,27 @@ namespace Reflection_Lab_2_Tests
         [TestMethod]
         public void TestMethodAlternativeName()
         {
+            const string s = "mhbmnvbnm";
             var myobj = new List<object> { new Cat(2), new Human(9), new BlueMen() };
             foreach (var value in myobj)
             {
                 var attribs = value.GetType().GetCustomAttributes(typeof(AlternativeName), false);
-                if (attribs.Count() != 0)
+                if (!attribs.Any())
                 {
-                    var alt = (AlternativeName)attribs[0];
-                    if (alt.Name == "BM")
-                    {
+                    continue;
+                }
+                var alt = (AlternativeName)attribs[0];
+                switch (alt.Name)
+                {
+                    case "BM":
                         Console.WriteLine("BlueMen");
-                    }
-                    else
-                    {
-                        if (alt.Name == "HM")
-                        {
-                            Console.WriteLine("Human");
-                        }
-                        else
-                        {
-                            if (alt.Name == "CT")
-                            {
-                                Console.WriteLine("Cat");
-                            }
-                        }
-                    }
+                        break;
+                    case "HM":
+                        Console.WriteLine("Human");
+                        break;
+                    case "CT":
+                        Console.WriteLine("Cat");
+                        break;
                 }
             }
         }
@@ -66,7 +62,7 @@ namespace Reflection_Lab_2_Tests
         public void TestMethodInterface()
         {
             var myobj = new List<object> { new Cat(2), new Human(9), new BlueMen() };
-            var count = myobj.Count(value => value.GetType().GetInterface("IViviparous") == typeof(IViviparous));
+            var count = myobj.Count(value => value.GetType().GetInterface("IViviparous") == null);
             Assert.AreEqual(count, 2);
         }
 
@@ -112,7 +108,7 @@ namespace Reflection_Lab_2_Tests
 
             foreach (var obj in objects)
             {
-                if (obj is BlueMen)
+                if (obj.GetType().Name.Equals() is BlueMen)
                 {
                     Assert.IsNotNull(
                         obj.GetType().GetProperty("CountOfTentacles"),

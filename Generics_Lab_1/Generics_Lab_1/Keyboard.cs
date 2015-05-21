@@ -32,10 +32,6 @@ namespace Generics_Lab_1
         /// <summary>
         /// Gets or sets the keyboard layout.
         /// </summary>
-        public string Keyboardlayout
-        {
-            get;
-            set;
-        }
+        public string Keyboardlayout { get; set; }
     }
 }
