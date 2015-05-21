@@ -14,40 +14,8 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model
     /// <summary>
     /// The human.
     /// </summary>
-    public class Human
+    public class Human : BaseObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Human"/> class.
-        /// </summary>
-        /// <param name="firstName">
-        /// The first name.
-        /// </param>
-        /// <param name="middleName">
-        /// The middle name.
-        /// </param>
-        /// <param name="lastName">
-        /// The last name.
-        /// </param>
-        /// <param name="biography">
-        /// The biography.
-        /// </param>
-        /// <param name="birthday">
-        /// The birthday.
-        /// </param>
-        public Human(string firstName, string middleName, string lastName, string biography, DateTime birthday)
-        {
-            this.FirstName = firstName;
-            this.MiddleName = middleName;
-            this.LastName = lastName;
-            this.Biography = biography;
-            this.Birthday = birthday;
-        }
-
-        /// <summary>
-        /// Gets or sets the id (all in the future will have an id)
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>

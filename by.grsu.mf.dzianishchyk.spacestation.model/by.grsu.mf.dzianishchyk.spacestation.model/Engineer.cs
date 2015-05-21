@@ -18,33 +18,6 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model
     public class Engineer : Human
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Engineer"/> class.
-        /// </summary>
-        /// <param name="firstName">
-        /// The first name.
-        /// </param>
-        /// <param name="middleName">
-        /// The middle name.
-        /// </param>
-        /// <param name="lastName">
-        /// The last name.
-        /// </param>
-        /// <param name="biography">
-        /// The biography.
-        /// </param>
-        /// <param name="birthday">
-        /// The birthday.
-        /// </param>
-        /// <param name="qualification">
-        /// The qualification.
-        /// </param>
-        public Engineer(string firstName, string middleName, string lastName, string biography, DateTime birthday, string qualification)
-            : base(firstName, middleName, lastName, biography, birthday)
-        {
-            this.Qualification = qualification;
-        }
-
-        /// <summary>
         /// Gets or sets the qualification.
         /// </summary>
         public string Qualification { get; set; }

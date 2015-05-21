@@ -12,24 +12,8 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model
     /// <summary>
     /// The space ship.
     /// </summary>
-    public class Ship
+    public class Ship : BaseObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Ship"/> class.
-        /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        public Ship(string name)
-        {
-            this.Name = name;
-        }
-
-        /// <summary>
-        /// Gets or sets the id of space ship.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name of space ship.
         /// </summary>

@@ -14,30 +14,8 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model
     /// <summary>
     /// The dock.
     /// </summary>
-    public class Dock
+    public class Dock : BaseObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Dock"/> class.
-        /// </summary>
-        /// <param name="station">
-        /// The station.
-        /// </param>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="countOfShipsPlaces"></param>
-        public Dock(Station station, string name, int countOfShipsPlaces)
-        {
-            this.Station = station;
-            this.Name = name;
-            this.CountOfShipsPlaces = countOfShipsPlaces;
-        }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

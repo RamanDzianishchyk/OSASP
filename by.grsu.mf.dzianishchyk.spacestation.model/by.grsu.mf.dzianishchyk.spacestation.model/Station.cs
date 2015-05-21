@@ -14,28 +14,8 @@ namespace by.grsu.mf.dzianishchyk.spacestation.model
     /// <summary>
     /// The space station.
     /// </summary>
-    public class Station
+    public class Station : BaseObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Station"/> class.
-        /// </summary>
-        /// <param name="name">
-        /// The name.
-        /// </param>
-        /// <param name="location">
-        /// The location.
-        /// </param>
-        public Station(string name, string location)
-        {
-            this.Name = name;
-            this.Location = location;
-        }
-
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
